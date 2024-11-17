@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcular Salario - Taller DOOM</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #212529;
+      color: #ffffff;
+      padding: 15px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background-color: #343a40;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    nav a {
+      color: #ffffff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a i {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+
+    nav a:hover {
+      color: #17a2b8;
+      transform: scale(1.1);
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Secciones */
+    .seccion {
+      background-color: #ffffff;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    }
+
+    .seccion:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .seccion h2 {
+      color: #343a40;
+      font-size: 26px;
+      margin-top: 0;
+    }
+
+    .seccion p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .formulario {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, select {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #28a745;
+      color: #fff;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+
+    /* Estilos para el botón Home flotante */
+    .boton-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .boton-home:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+
+      .seccion h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cálculo de Salario</h1>
+  </header>
+
+  <nav>
+    <a href="alquiler.html"><i class="fas fa-car-side"></i>Carros</a>
+    <a href="nomina.html"><i class="fas fa-cash-register"></i>Nómina</a>
+    <a href="competencia.html"><i class="fas fa-dog"></i>Perros</a>
+    <a href="parqueadero.html"><i class="fas fa-parking"></i>Parqueadero</a>
+  </nav>
+
+  <div class="container">
+    <div class="seccion">
+      <h2>Formulario de Cálculo de Salario</h2>
+      <p>Ingresa los datos solicitados para calcular el salario total.</p>
+      
+      <form class="formulario" id="formularioSalario">
+        <label for="salarioBasico">Salario Básico Mensual (COP):</label>
+        <input type="number" id="salarioBasico" required>
+        
+        <label for="horasExtrasDiurnas">Horas Extras Diurnas:</label>
+        <input type="number" id="horasExtrasDiurnas" required>
+        
+        <label for="horasExtrasNocturnas">Horas Extras Nocturnas:</label>
+        <input type="number" id="horasExtrasNocturnas" required>
+        
+        <label for="horasExtrasFestivas">Horas Extras Festivas:</label>
+        <input type="number" id="horasExtrasFestivas" required>
+        
+        <label for="horasExtrasDominicales">Horas Extras Dominicales:</label>
+        <input type="number" id="horasExtrasDominicales" required>
+        
+        <label for="diasFaltados">Días Faltados:</label>
+        <input type="number" id="diasFaltados" required>
+
+        <button type="submit">Calcular Salario</button>
+      </form>
+
+      <div class="resultado" id="resultado"></div>
+    </div>
+  </div>
+
+  <!-- Botón flotante -->
+  <button class="boton-home" onclick="window.location.href='index.html'">
+    <i class="fas fa-home"></i>
+  </button>
+
+  <script>
+    document.getElementById('formularioSalario').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Obtener los valores de los campos
+      let salarioBasico = parseFloat(document.getElementById('salarioBasico').value);
+      let horasExtrasDiurnas = parseInt(document.getElementById('horasExtrasDiurnas').value);
+      let horasExtrasNocturnas = parseInt(document.getElementById('horasExtrasNocturnas').value);
+      let horasExtrasFestivas = parseInt(document.getElementById('horasExtrasFestivas').value);
+      let horasExtrasDominicales = parseInt(document.getElementById('horasExtrasDominicales').value);
+      let diasFaltados = parseInt(document.getElementById('diasFaltados').value);
+
+      // Cálculos
+      const valorHoraNormal = salarioBasico / 240; // 30 días * 8 horas por día = 240 horas al mes
+      const valorHoraExtraDiurna = valorHoraNormal * 1.25;
+      const valorHoraExtraNocturna = valorHoraNormal * 1.35;
+      const valorHoraExtraFestiva = valorHoraNormal * 1.75;
+      const valorHoraExtraDominical = valorHoraNormal * 2;
+
+      const ingresosHorasExtras = (
+        (horasExtrasDiurnas * valorHoraExtraDiurna) +
+        (horasExtrasNocturnas * valorHoraExtraNocturna) +
+        (horasExtrasFestivas * valorHoraExtraFestiva) +
+        (horasExtrasDominicales * valorHoraExtraDominical)
+      );
+
+      const salarioPorDia = salarioBasico / 30; // Salario diario
+      const descuentoFaltas = salarioPorDia * diasFaltados;
+
+      // Descuentos para salud y pensión
+      const descuentoSalud = salarioBasico * 0.04;
+      const descuentoPension = salarioBasico * 0.04;
+
+      const totalDescuentos = descuentoSalud + descuentoPension + descuentoFaltas;
+      const totalAPagar = salarioBasico + ingresosHorasExtras - totalDescuentos;
+
+      // Mostrar resultados
+      document.getElementById('resultado').innerHTML = `
+        <strong>Salario Básico:</strong> $${salarioBasico.toFixed(2)} <br>
+        <strong>Ingresos por Horas Extras:</strong> $${ingresosHorasExtras.toFixed(2)} <br>
+        <strong>Descuentos:</strong> $${totalDescuentos.toFixed(2)} <br>
+        <strong>Total a Pagar:</strong> $${totalAPagar.toFixed(2)}
+      `;
+    });
+  </script>
+</body>
+</html>

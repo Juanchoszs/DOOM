@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alquiler de Carros - Taller DOOM</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #212529;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background-color: #343a40;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    nav a {
+      color: #ffffff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a i {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+
+    nav a:hover {
+      color: #17a2b8;
+      transform: scale(1.1);
+    }
+
+    /* Galería de carros */
+    .car-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .car-card {
+      width: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .car-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .car-card p {
+      margin: 10px 0 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .car-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Formulario de Alquiler */
+    .rental-form {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .rental-form h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .rental-form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    .rental-form input, .rental-form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .rental-form button {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .rental-form button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Estilos para el resultado del alquiler */
+    .price-result {
+      margin-top: 20px;
+      padding: 20px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      color: white;
+    }
+
+    /* Estilo para el hipervínculo Home */
+    .home-link {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #007bff;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .home-link i {
+      margin-right: 10px;
+    }
+
+    .home-link:hover {
+      background-color: #0056b3;
+    }
+
+    /* Estilos para el botón Home flotante */
+    .boton-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .boton-home:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Alquiler de Carros</h1>
+  </header>
+
+  <nav>
+    <a href="alquiler.html"><i class="fas fa-car"></i>Carros</a>
+    <a href="nomina.html"><i class="fas fa-cash-register"></i>Nómina</a>
+    <a href="competencia.html"><i class="fas fa-dog"></i>Perros</a>
+    <a href="parqueadero.html"><i class="fas fa-parking"></i>Parqueadero</a>
+  </nav>
+
+  <!-- Botón Home flotante -->
+  <button class="boton-home" onclick="window.location.href='index.html'">
+    <i class="fas fa-home"></i>
+  </button>
+
+  <section class="car-gallery">
+    <div class="car-card" style="background-color: #0044cc;">
+      <img src="bmw.png" alt="BMW azul">
+      <p>BMW Azul</p>
+    </div>
+    <div class="car-card" style="background-color: #333;">
+      <img src="mercedes.png" alt="Mercedes negro">
+      <p>Mercedes Negro</p>
+    </div>
+    <div class="car-card" style="background-color: #28a745;">
+      <img src="twingo.jpg" alt="Twingo verde">
+      <p>Twingo Verde</p>
+    </div>
+    <div class="car-card" style="background-color: #dc3545;">
+      <img src="megane.png" alt="Megane rojo">
+      <p>Megane Rojo</p>
+    </div>
+    <div class="car-card" style="background-color: #6c757d;">
+      <img src="chevrolet.png" alt="Chevrolet gris">
+      <p>Chevrolet Gris</p>
+    </div>
+  </section>
+
+  <section class="rental-form">
+    <h2>Formulario de Alquiler</h2>
+    <form id="formAlquiler">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="carro">Seleccionar Carro:</label>
+      <select id="carro" name="carro" required>
+        <option value="bmw">BMW Azul</option>
+        <option value="mercedes">Mercedes Negro</option>
+        <option value="twingo">Twingo Verde</option>
+        <option value="megane">Megane Rojo</option>
+        <option value="chevrolet">Chevrolet Gris</option>
+      </select>
+
+      <label for="dias">Cantidad de Días:</label>
+      <input type="number" id="dias" name="dias" min="1" required>
+
+      <button type="submit">Calcular Precio</button>
+    </form>
+
+    <div id="precioResultado" class="price-result" style="display: none;"></div>
+  </section>
+
+  <script>
+    document.getElementById('formAlquiler').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const carro = document.getElementById('carro').value;
+      const dias = parseInt(document.getElementById('dias').value);
+      let precio = 0;
+
+      if (carro === 'bmw') {
+        precio = 50 * dias;
+      } else if (carro === 'mercedes') {
+        precio = 60 * dias;
+      } else if (carro === 'twingo') {
+        precio = 40 * dias;
+      } else if (carro === 'megane') {
+        precio = 45 * dias;
+      } else if (carro === 'chevrolet') {
+        precio = 35 * dias;
+      }
+
+      let color;
+      if (dias <= 2) {
+        color = '#f39c12'; // Naranja
+      } else if (dias <= 5) {
+        color = '#f1c40f'; // Amarillo
+      } else if (dias <= 10) {
+        color = '#2ecc71'; // Verde
+      } else {
+        color = '#3498db'; // Azul
+      }
+
+      const resultado = document.getElementById('precioResultado');
+      resultado.textContent = `El precio por ${dias} días es: $${precio}`;
+      resultado.style.backgroundColor = color;
+      resultado.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

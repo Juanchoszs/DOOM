@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller DOOM</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #212529;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background-color: #343a40;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    nav a {
+      color: #ffffff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a i {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+
+    nav a:hover {
+      color: #17a2b8;
+      transform: scale(1.1);
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Secciones */
+    .seccion {
+      background-color: #ffffff;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    }
+
+    .seccion:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .seccion h2 {
+      color: #343a40;
+      font-size: 26px;
+      margin-top: 0;
+    }
+
+    .seccion p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Botones de acción */
+    .seccion a {
+      display: inline-block;
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s ease-in-out, transform 0.2s;
+    }
+
+    .seccion a:hover {
+      background-color: #0056b3;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+
+      .seccion h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Taller DOOM</h1>
+  </header>
+
+  <nav>
+    <a href="alquiler.html"><i class="fas fa-car-side"></i>Carros</a>
+    <a href="nomina.html"><i class="fas fa-cash-register"></i>Nómina</a>
+    <a href="competencia.html"><i class="fas fa-dog"></i>Perros</a>
+    <a href="parqueadero.html"><i class="fas fa-parking"></i>Parqueadero</a>
+  </nav>
+
+  <div class="container">
+    <div class="seccion" id="carros">
+      <h2>Alquiler de Carros</h2>
+      <p>Explora nuestra variedad de carros en alquiler y calcula el precio que mejor se adapte a tus necesidades.</p>
+      <a href="alquiler.html">Ver Carros</a>
+    </div>
+
+    <div class="seccion" id="nomina">
+      <h2>Nómina</h2>
+      <p>Gestiona eficientemente los salarios de tu equipo con nuestra calculadora de nómina.</p>
+      <a href="nomina.html">Calcular Nómina</a>
+    </div>
+
+    <div class="seccion" id="perros">
+      <h2>Competencia de Perros</h2>
+      <p>Descubre los ganadores y los momentos más emocionantes de nuestra competencia de perros.</p>
+      <a href="competencia.html">Ver Competencia</a>
+    </div>
+
+    <div class="seccion" id="parqueadero">
+      <h2>Parqueadero</h2>
+      <p>Calcule el costo de estacionamiento con nuestra herramienta rápida y fácil de usar.</p>
+      <a href="parqueadero.html">Calcular Parqueadero</a>
+    </div>
+  </div>
+</body>
+</html>

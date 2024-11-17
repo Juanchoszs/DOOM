@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parqueadero</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #212529;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background-color: #343a40;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    nav a {
+      color: #ffffff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a i {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+
+    nav a:hover {
+      color: #17a2b8;
+      transform: scale(1.1);
+    }
+
+    /* Formulario para el cálculo */
+    .formulario {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .formulario h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .formulario label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    .formulario input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .formulario button {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .formulario button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Resultados */
+    .resultado {
+      margin-top: 20px;
+      padding: 20px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      color: white;
+    }
+
+    /* Estilo para el botón Home flotante */
+    .boton-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .boton-home:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Parqueadero</h1>
+  </header>
+
+  <nav>
+    <a href="alquiler.html"><i class="fas fa-car"></i>Carros</a>
+    <a href="nomina.html"><i class="fas fa-cash-register"></i>Nómina</a>
+    <a href="competencia.html"><i class="fas fa-dog"></i>Perros</a>
+    <a href="parqueadero.html"><i class="fas fa-parking"></i>Parqueadero</a>
+  </nav>
+
+  <!-- Botón Home flotante -->
+  <button class="boton-home" onclick="window.location.href='index.html'">
+    <i class="fas fa-home"></i>
+  </button>
+
+  <section class="formulario">
+    <h2>Calcula el Costo del Parqueadero</h2>
+    <form id="formParqueadero">
+      <label for="horas">Número de Horas:</label>
+      <input type="number" id="horas" name="horas" min="1" required>
+
+      <button type="submit">Calcular Costo</button>
+    </form>
+
+    <div id="resultado" class="resultado" style="display: none;"></div>
+  </section>
+
+  <script>
+    document.getElementById('formParqueadero').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const horas = parseInt(document.getElementById('horas').value);
+      const costoPorHora = 1500;
+
+      // El costo se calcula multiplicando el número de horas por el costo por hora
+      let costoTotal = horas * costoPorHora;
+
+      // Si hay fracción de hora, se cobra como si fuera una hora completa
+      if (horas !== Math.floor(horas)) {
+        costoTotal = Math.ceil(horas) * costoPorHora;
+      }
+
+      const resultado = document.getElementById('resultado');
+      resultado.textContent = `El costo total del parqueadero es: $${costoTotal.toLocaleString()}`;
+      resultado.style.display = 'block';
+      resultado.style.backgroundColor = '#28a745'; // Verde para éxito
+    });
+  </script>
+</body>
+</html>

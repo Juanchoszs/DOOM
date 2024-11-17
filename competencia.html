@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competencia - Perros</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #212529;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background-color: #343a40;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    nav a {
+      color: #ffffff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a i {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+
+    nav a:hover {
+      color: #17a2b8;
+      transform: scale(1.1);
+    }
+
+    /* Botón Home flotante */
+    .boton-home {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.boton-home:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Ajuste del icono dentro del botón */
+.boton-home i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-size: 24px;
+}
+
+    /* Estilos existentes de competencia.html */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 20px;
+    }
+
+    .card {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      width: 230px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .card-price {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+
+    /* Colores de las cards */
+    .pitbull { background-color: #ff6b6b; }
+    .buly { background-color: #4ecdc4; }
+    .rottwhiller { background-color: #45b7d1; }
+    .labrador { background-color: #96ceb4; }
+    .golden { background-color: #ffeead; }
+    .doberman { background-color: #d4a373; }
+    .dogo { background-color: #588157; }
+
+    .selection-section {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .selection-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    .select-container {
+      margin-bottom: 20px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #resultados {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .resultado-card {
+      background-color: #f8f9fa;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border-left: 5px solid;
+    }
+
+    .primer-lugar { border-left-color: #ffd700; }
+    .segundo-lugar { border-left-color: #c0c0c0; }
+    .tercer-lugar { border-left-color: #cd7f32; }
+
+    .medalla {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Competencia - Perros</h1>
+  </header>
+
+  <nav>
+    <a href="alquiler.html"><i class="fas fa-car"></i>Carros</a>
+    <a href="nomina.html"><i class="fas fa-cash-register"></i>Nómina</a>
+    <a href="competencia.html"><i class="fas fa-dog"></i>Perros</a>
+    <a href="parqueadero.html"><i class="fas fa-parking"></i>Parqueadero</a>
+  </nav>
+
+  <!-- Botón Home flotante -->
+  <button class="boton-home" onclick="window.location.href='index.html'">
+    <i class="fas fa-home"></i>
+  </button>
+
+  <div class="cards-container">
+    <div class="card">
+      <img src="pitbull.png" alt="Pitbull">
+      <div class="card-content pitbull">
+        <div class="card-title">Pitbull</div>
+        <div class="card-price">$6,000,000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Buly.jpeg" alt="Buly">
+      <div class="card-content buly">
+        <div class="card-title">Buly</div>
+        <div class="card-price">$6,500,000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Rott.jpeg" alt="Rottwhiller">
+      <div class="card-content rottwhiller">
+        <div class="card-title">Rottwhiller</div>
+        <div class="card-price">$4,000,000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Labrador.png" alt="Labrador">
+      <div class="card-content labrador">
+        <div class="card-title">Labrador</div>
+        <div class="card-price">$3,500,000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Golden.png" alt="Golden">
+      <div class="card-content golden">
+        <div class="card-title" style="color: #1a1a1a;">Golden</div>
+        <div class="card-price" style="color: #1a1a1a;">$3,500,000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Doberman.jpeg" alt="Doberman">
+      <div class="card-content doberman">
+        <div class="card-title">Doberman</div>
+        <div class="card-price">$5,000,000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Dogo.avif" alt="Dogo">
+      <div class="card-content dogo">
+        <div class="card-title">Dogo Argentino</div>
+        <div class="card-price">$5,500,000</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="selection-section">
+    <h2>Seleccionar Ganadores</h2>
+    
+    <div class="select-container">
+      <select id="primerLugar">
+        <option value="">Seleccione el Primer Lugar 🥇</option>
+        <option value="pitbull|6000000">Pitbull</option>
+        <option value="buly|6500000">Buly</option>
+        <option value="rottwhiller|4000000">Rottwhiller</option>
+        <option value="labrador|3500000">Labrador</option>
+        <option value="golden|3500000">Golden</option>
+        <option value="doberman|5000000">Doberman</option>
+        <option value="dogo|5500000">Dogo Argentino</option>
+      </select>
+
+      <select id="segundoLugar">
+        <option value="">Seleccione el Segundo Lugar 🥈</option>
+        <option value="pitbull|6000000">Pitbull</option>
+        <option value="buly|6500000">Buly</option>
+        <option value="rottwhiller|4000000">Rottwhiller</option>
+        <option value="labrador|3500000">Labrador</option>
+        <option value="golden|3500000">Golden</option>
+        <option value="doberman|5000000">Doberman</option>
+        <option value="dogo|5500000">Dogo Argentino</option>
+      </select>
+
+      <select id="tercerLugar">
+        <option value="">Seleccione el Tercer Lugar 🥉</option>
+        <option value="pitbull|6000000">Pitbull</option>
+        <option value="buly|6500000">Buly</option>
+        <option value="rottwhiller|4000000">Rottwhiller</option>
+        <option value="labrador|3500000">Labrador</option>
+        <option value="golden|3500000">Golden</option>
+        <option value="doberman|5000000">Doberman</option>
+        <option value="dogo|5500000">Dogo Argentino</option>
+      </select>
+    </div>
+
+    <button onclick="calcularGanadores()">Mostrar Resultados</button>
+
+    <div id="resultados"></div>
+  </div>
+
+  <script>
+    function calcularGanadores() {
+      const primerLugar = document.getElementById('primerLugar').value.split('|');
+      const segundoLugar = document.getElementById('segundoLugar').value.split('|');
+      const tercerLugar = document.getElementById('tercerLugar').value.split('|');
+
+      // Validar que se hayan seleccionado diferentes perros
+      if (!primerLugar[0] || !segundoLugar[0] || !tercerLugar[0]) {
+        alert('Por favor seleccione los tres ganadores');
+        return;
+      }
+
+      if (primerLugar[0] === segundoLugar[0] || primerLugar[0] === tercerLugar[0] || segundoLugar[0] === tercerLugar[0]) {
+        alert('Por favor seleccione diferentes perros para cada puesto');
+        return;
+      }
+
+      const resultados = document.getElementById('resultados');
+      resultados.style.display = 'block';
+      resultados.innerHTML = '';
+
+      // Calcular y mostrar los resultados
+      const calcularNuevoPrecio = (precio, puesto) => {
+        precio = parseInt(precio);
+        if (puesto === 1) return precio * 2;
+        if (puesto === 2) return precio + 800000;
+        if (puesto === 3) return precio + 200000;
+        return precio;
+      };
+
+      // Crear cards de resultados
+      const crearResultado = (perro, precio, puesto, medalla) => {
+        const nuevoPrecio = calcularNuevoPrecio(precio, puesto);
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.className = `resultado-card ${puesto === 1 ? 'primer-lugar' : puesto === 2 ? 'segundo-lugar' : 'tercer-lugar'}`;
+        resultadoDiv.innerHTML = `
+          <h3><span class="medalla">${medalla}</span> ${perro}</h3>
+          <p>Precio original: $${parseInt(precio).toLocaleString()}</p>
+          <p>Nuevo precio: $${nuevoPrecio.toLocaleString()}</p>
+        `;
+        return resultadoDiv;
+      };
+
+      resultados.appendChild(crearResultado(primerLugar[0], primerLugar[1], 1, '🥇'));
+      resultados.appendChild(crearResultado(segundoLugar[0], segundoLugar[1], 2, '🥈'));
+      resultados.appendChild(crearResultado(tercerLugar[0], tercerLugar[1], 3, '🥉'));
+    }
+  </script>
+</body>
+</html>
